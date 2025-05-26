@@ -1,67 +1,69 @@
-# Scrapping Resultados Elecciones Ecuador 2025
+# Análisis de las Elecciones Presidenciales Ecuador 2025
 
-Este proyecto contiene scripts en Python para extraer (scrapear) los resultados de las elecciones presidenciales de Ecuador 2025, tanto para la primera como para la segunda vuelta, a nivel de parroquia.
+Este repositorio contiene el código y los datos utilizados para el análisis de las elecciones presidenciales de Ecuador en 2025, con énfasis en el fenómeno de polarización política. El análisis completo fue publicado en [Razón Pública](https://razonpublica.com/ecuador-pais-partido-dos-noboa-gonzalez-dilema-indigena/).
 
-## Estructura
+## 📁 Estructura del Repositorio
 
-- `Scrapping primera vuelta ecuador.py`: Script para scrapear los resultados de la **primera vuelta**.
-- `Scrapping Segunda vuelta ecuador.py`: Script para scrapear los resultados de la **segunda vuelta**.
-
-## Requisitos
-
-- Python 3.7+
-- Google Chrome instalado
-- Paquetes Python:
-  - selenium
-  - webdriver-manager
-
-Puedes instalar los requisitos ejecutando:
-
-```sh
-pip install selenium webdriver-manager
+```
+ecuador-elecciones/
+├── Datos/                       # Datos crudos y procesados (CSV)
+├── Indicadores de polarización/ # Notebooks con análisis y visualización
+├── Web Scrapping/              # Scripts de scraping primera y segunda vuelta
+└── LICENSE
 ```
 
-## Uso
+## 🧩 Componentes
 
-1. **Configura la ruta de salida del CSV** en cada script si es necesario.
-2. Ejecuta el script correspondiente desde la terminal:
+### 1. Web Scraping
 
-   Primera vuelta:
-   ```sh
-   python "Scrapping primera vuelta ecuador.py"
-   ```
+Scripts en Python que extraen los resultados oficiales de las elecciones desde los dashboards del CNE para:
 
-   Segunda vuelta:
-   ```sh
-   python "Scrapping Segunda vuelta ecuador.py"
-   ```
+- **Primera vuelta:** https://resultados2025.cne.gob.ec/
+- **Segunda vuelta:** https://resultados2025-2v.cne.gob.ec/
 
-3. El script abrirá una ventana de Chrome, navegará por las provincias, cantones y parroquias, y guardará los resultados en un archivo CSV.
+Los datos de elecciones anteriores (como 2023) disponibles en [bases de datos del CNE](https://www.cne.gob.ec/estadisticas/bases-de-datos/)
 
-### Notas
+#### Archivos:
 
-- Si el script se interrumpe, puede reanudarse automáticamente desde el último registro guardado en el CSV.
-- Puedes activar el modo "headless" (sin ventana) descomentando la línea correspondiente en el código.
+- `Scrapping primera vuelta ecuador.py`
+- `Scrapping segunda vuelta ecuador.py`
 
-## Salida
+#### Requisitos:
 
-Los resultados se guardan en archivos CSV con las siguientes columnas:
+- Python 3.7+
+- Google Chrome
+- Paquetes:
+  ```sh
+  pip install selenium webdriver-manager
+  ```
 
-- Provincia
-- Cantón
-- id_canton
-- Parroquia
-- id_parroquia
-- Tipo
-- Listas y Siglas
-- Candidatos
-- Votos
-- %votos
-- Indicador
-- Valor
+#### Instrucciones:
 
-## Licencia
+```bash
+python "Scrapping primera vuelta ecuador.py"
+python "Scrapping segunda vuelta ecuador.py"
+```
 
-MIT License
+Los resultados se guardan en archivos `.csv` con columnas como: Provincia, Cantón, Parroquia, Candidato, Votos, %votos, etc.
 
-Copyright (c) 2025 Juan Manuel Pinto
+### 2. Análisis de Polarización
+
+En la carpeta **Indicadores de polarización/** se encuentran notebooks en Jupyter que procesan los datos y calculan los siguientes indicadores clave:
+
+#### 📊 Indicadores utilizados
+
+- **Número Efectivo de Candidatos (NEC):** estima cuántos candidatos fueron realmente competitivos.
+- **Polarización L1 (vs. ideal 50/50):** mide la cercanía del resultado a una competencia perfectamente polarizada entre dos candidatos.
+- **Balanza de Polarización (L1):** compara si los resultados se asemejan más a una distribución 50/50 entre dos líderes o a una fragmentación total.
+- **Balanza de Polarización (Euclidiana):** misma lógica anterior, pero usando distancia euclidiana.
+
+## 📌 Resultado del Análisis
+
+Puedes leer el artículo completo con los resultados y visualizaciones en:
+
+👉 [Ecuador: ¿un país partido en dos? Noboa, González y el dilema indígena (Razón Pública)](https://razonpublica.com/ecuador-pais-partido-dos-noboa-gonzalez-dilema-indigena/)
+
+## 📄 Licencia
+
+MIT License  
+(c) 2025 Juan Manuel Pinto
